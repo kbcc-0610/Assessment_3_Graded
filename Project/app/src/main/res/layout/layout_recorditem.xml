@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_high_share"
         android:layout_width="88dp"
         android:layout_height="35dp"
         android:text="Share"

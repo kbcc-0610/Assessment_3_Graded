@@ -1,7 +1,9 @@
 package com.example.assignment_3.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +25,7 @@ public class RegisterPage extends AppCompatActivity {
     private String userName;
     private String password;
     private TextView txtError;
-
+    private AlertDialog.Builder confirm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class RegisterPage extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         registerNewUser();
         txtError.setVisibility(View.GONE);
+        confirm = new AlertDialog.Builder(this);
     }
 
     private void registerNewUser() {
@@ -40,11 +43,10 @@ public class RegisterPage extends AppCompatActivity {
         editPass = findViewById(R.id.edit_regis_pass);
         btnRegister = findViewById(R.id.btn_reg_register);
 
-        found = false;
-
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                found = false;
                 txtError.setVisibility(View.GONE);
                 userName = editUserName.getText().toString();
                 password = editPass.getText().toString();
@@ -80,6 +82,15 @@ public class RegisterPage extends AppCompatActivity {
     }
 
     private void SuccessfullyRegister() {
-        finish();
+        confirm.setTitle("Successful");
+        confirm.setMessage("You have successfully sign up new account, Press button to log in");
+        confirm.setNegativeButton("Continue", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        confirm.create();
+        confirm.show();
     }
 }

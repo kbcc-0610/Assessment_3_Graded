@@ -183,7 +183,7 @@ public class GamePage extends AppCompatActivity implements EnterUserName.UserNam
             //check the horizontal
             for (int i = 0; i < columncount * columncount - 2; i++) {
                 if (gridArr[i].getColorSource() == color1 && gridArr[i + 1].getColorSource() == color1 && gridArr[i + 2].getColorSource() == color1) {
-                    toastmsg = Toast.makeText(getApplicationContext(), "Blue Lose in Hor" + " " + timeused + "s", Toast.LENGTH_SHORT);
+                    toastmsg = Toast.makeText(getApplicationContext(), "Player Lose in Hor" + " " + timeused + "s", Toast.LENGTH_SHORT);
                     toastmsg.show();
                     gameLose();
                     win = false;
@@ -192,7 +192,7 @@ public class GamePage extends AppCompatActivity implements EnterUserName.UserNam
                 if (gridArr[i].getColorSource() == color2 && gridArr[i + 1].getColorSource() == color2 && gridArr[i + 2].getColorSource() ==color2) {
                     nextColor = findViewById(R.id.img_nextColor);
                     nextColor.setImageResource(R.color.colorAccent);
-                    toastmsg = Toast.makeText(getApplicationContext(), "Red Lose in Hor" + " " + timeused + "s", Toast.LENGTH_SHORT);
+                    toastmsg = Toast.makeText(getApplicationContext(), "Player Lose in Hor" + " " + timeused + "s", Toast.LENGTH_SHORT);
                     toastmsg.show();
                     gameLose();
                     win = false;
@@ -201,13 +201,13 @@ public class GamePage extends AppCompatActivity implements EnterUserName.UserNam
             //check for the Vertical
             for (int i = 0; i < columncount * columncount - columncount * 2; i++) {
                 if (gridArr[i].getColorSource() == color1 && gridArr[i + columncount].getColorSource() == color1 && gridArr[i + columncount*2].getColorSource() == color1) {
-                    Toast.makeText(getApplicationContext(), "Blue Lose in Ver" + " " + timeused + "s", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Player Lose in Ver" + " " + timeused + "s", Toast.LENGTH_SHORT).show();
                     gameLose();
                     win = false;
                 }
 
                 if (gridArr[i].getColorSource() == color2 && gridArr[i + columncount].getColorSource() == color2 && gridArr[i + columncount*2].getColorSource() == color2) {
-                    Toast.makeText(getApplicationContext(), "Red Lose in Ver" + " " + timeused + "s", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Player Lose in Ver" + " " + timeused + "s", Toast.LENGTH_SHORT).show();
                     gameLose();
                     win = false;
                 }

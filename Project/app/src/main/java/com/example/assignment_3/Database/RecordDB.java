@@ -1,7 +1,6 @@
 package com.example.assignment_3.Database;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 
 import androidx.room.Database;
 import androidx.room.Room;
@@ -37,9 +36,16 @@ public abstract class RecordDB extends RoomDatabase {
     public static int initData(final Context context) {
         RecordDB db = getInstance(context);
         if (db.recordDao().getAllRecords().size() == 0) {
-            db.recordDao().insert(new Record("Joe", 35, "2011-11-11"),
-                    new Record("Thomas", 24, "2011-10-11"),
-                    new Record("Jon", 15, "2011-12-11"));
+            db.recordDao().insert(new Record("Joe", 35, "11/06/2020"),
+                    new Record("Thomas", 24, "11/06/2020"),
+                    new Record("Jon", 15, "11/06/2020"),
+                     new Record("Micheal", 33, "11/06/2020"),
+                    new Record("Dannie", 11, "11/06/2020"),
+                    new Record("John", 18, "11/06/2020"),
+                    new Record("Johnson", 34, "11/06/2020"),
+                    new Record("Larry", 33, "11/06/2020"),
+                    new Record("Maxi", 32, "11/06/2020"),
+                    new Record("Chris", 44, "11/06/2020"));
         }
         return db.recordDao().getAllRecords().size();
     }

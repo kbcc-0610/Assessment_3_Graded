@@ -1,7 +1,9 @@
 package com.example.assignment_3.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,6 +29,7 @@ public class Login_page extends AppCompatActivity {
     public static String loginUserName;
     private TextView txtError;
     private Boolean found = false;
+    private AlertDialog.Builder confirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class Login_page extends AppCompatActivity {
         txtError = findViewById(R.id.txt_logIn_error);
         txtError.setVisibility(View.GONE);
         UserDB.initData(getApplicationContext());
+        confirm = new AlertDialog.Builder(this);
         Register();
         Login();
     }
@@ -98,6 +102,19 @@ public class Login_page extends AppCompatActivity {
                 }
                 if(logined){
                     // if login then ...
+                    confirm.setTitle("Successful");
+                    confirm.setMessage("You have successfully login, Press button to continue ");
+                    confirm.setNegativeButton("Continue", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            //finish();
+                            Intent intent = new Intent(Login_page.this,MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    confirm.create();
+                    confirm.show();
                 }
             }
         });

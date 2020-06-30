@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToLoginPage() {
-        txtLogIn = findViewById(R.id.txt_login);
         txtLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,4 +129,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }
