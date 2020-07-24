@@ -35,11 +35,11 @@ public abstract class UserDB extends RoomDatabase {
         UserDB db = getInstance(context);
         if(db.userDao().getAllUsers().size() ==0){
             db.userDao().insert(
-                    new User("Larry","94182391238"),
-                    new User("Mike","1410519031"),
-                    new User("Nicky","dasdk1391"),
-                    new User("Kbc13","dkanzm14142"),
-                    new User("test","test")
+                    new User("Larry","94182391238",1),
+                    new User("Mike","1410519031",1),
+                    new User("Nicky","dasdk1391",1),
+                    new User("Kbc13","dkanzm14142",1),
+                    new User("test","test",2)
             );
         }
         return db.userDao().getAllUsers().size();

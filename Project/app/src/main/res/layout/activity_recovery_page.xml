@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background1"
+    tools:context=".Activities.RecoveryPage">
+
+    <TextView
+        android:id="@+id/txt_Recov_Descr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="If you forget your login details, we can send the login in name or login password to your email address, To Do this enter Your Emial Address you used to login and then you would receive a Emial from us in few miniuts"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintBottom_toTopOf="@+id/edit_recover_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_recov_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email Address"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_recover_recov"
+        app:layout_constraintEnd_toStartOf="@+id/edit_recover_email"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Recov_Descr" />
+
+    <EditText
+        android:id="@+id/edit_recover_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter your email address "
+        android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/txt_recov_email"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Recov_Descr" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_recover_recov"
+        app:layout_constraintTop_toBottomOf="@+id/edit_recover_email">
+
+        <RadioButton
+            android:id="@+id/radio_Recov_userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USER NAME"
+            android:textColor="@color/colorAccent" />
+
+        <RadioButton
+            android:id="@+id/radio_Recov_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textColor="@color/colorAccent" />
+
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_recover_recov"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
+        android:text="Recover"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_recov_email" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

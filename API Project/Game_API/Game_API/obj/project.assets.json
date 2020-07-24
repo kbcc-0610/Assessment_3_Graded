@@ -8707,11 +8707,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\Semester 3\\Apply advanced object-oriented language skills\\Assessment_3_Graded\\API Project\\Game_API\\Game_API\\Game_API.csproj",
+      "projectUniqueName": "E:\\Assessment_3_Graded\\API Project\\Game_API\\Game_API\\Game_API.csproj",
       "projectName": "Game_API",
-      "projectPath": "H:\\Semester 3\\Apply advanced object-oriented language skills\\Assessment_3_Graded\\API Project\\Game_API\\Game_API\\Game_API.csproj",
+      "projectPath": "E:\\Assessment_3_Graded\\API Project\\Game_API\\Game_API\\Game_API.csproj",
       "packagesPath": "C:\\Users\\kobez\\.nuget\\packages\\",
-      "outputPath": "H:\\Semester 3\\Apply advanced object-oriented language skills\\Assessment_3_Graded\\API Project\\Game_API\\Game_API\\obj\\",
+      "outputPath": "E:\\Assessment_3_Graded\\API Project\\Game_API\\Game_API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

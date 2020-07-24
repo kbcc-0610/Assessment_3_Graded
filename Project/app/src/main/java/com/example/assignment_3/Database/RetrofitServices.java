@@ -5,8 +5,8 @@ import android.util.Log;
 import com.example.assignment_3.Model.Record;
 import com.example.assignment_3.Model.Setting;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,4 +65,74 @@ public class RetrofitServices {
         });
     }
 
+    public void DeleteHighScore(int id){
+        Call<Record> recordCall = service.DeleteRecordByID(id);
+        recordCall.enqueue(new Callback<Record>() {
+            @Override
+            public void onResponse(Call<Record> call, Response<Record> response) {
+                Log.d(TAG,"Successfully delete the record ");
+                return;
+            }
+
+            @Override
+            public void onFailure(Call<Record> call, Throwable t) {
+                Log.d(TAG,"Error with delete the record");
+            }
+        });
+    }
+
+    public void DeleteSetting(int id){
+        Call<Setting> settingCall = service.DeleteSettingByID(id);
+        settingCall.enqueue(new Callback<Setting>() {
+            @Override
+            public void onResponse(Call<Setting> call, Response<Setting> response) {
+                Log.d(TAG,"Successfully delete the setting");
+                return;
+            }
+
+            @Override
+            public void onFailure(Call<Setting> call, Throwable t) {
+                Log.d(TAG,"Error with deleting the settings");
+            }
+        });
+    }
+
+    public void HighScoreReadAll(final ResultsHandler handler){
+        Call<List<Record>> recordReadAll = service.getAllRecords();
+        recordReadAll.enqueue(new Callback<List<Record>>() {
+            @Override
+            public void onResponse(Call<List<Record>> call, Response<List<Record>> response) {
+                List<Record> list = response.body();
+                handler.ReadAllHighScore(list);
+            }
+
+            @Override
+            public void onFailure(Call<List<Record>> call, Throwable t) {
+                Log.d(TAG,"Error with read the record");
+            }
+        });
+    }
+
+    public void SettingReadAll(final ResultsHandler handler){
+        Call<List<Setting>> listCall = service.getAllSetting();
+        listCall.enqueue(new Callback<List<Setting>>() {
+            @Override
+            public void onResponse(Call<List<Setting>> call, Response<List<Setting>> response) {
+                List<Setting> list = response.body();
+                handler.ReadAllSetting(list);
+                return;
+            }
+
+            @Override
+            public void onFailure(Call<List<Setting>> call, Throwable t) {
+                Log.d(TAG,"Error with read the settings");
+            }
+        });
+    }
+
+
+    public interface ResultsHandler{
+        void ReadAllHighScore(List<Record> recordList);
+        void ReadAllSetting(List<Setting> settingList);
+    }
 }

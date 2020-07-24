@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background1"
     tools:context=".Activities.Login_page">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="User Name"
+        android:textColor="@color/colorAccent"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/txt_login_password"
         app:layout_constraintEnd_toStartOf="@+id/edit_login_UserName"
@@ -25,6 +27,8 @@
         android:ems="10"
         android:hint="Enter User Name"
         android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/edit_login_pass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -36,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
+        android:textColor="@color/colorAccent"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_login_login"
         app:layout_constraintEnd_toStartOf="@+id/edit_login_pass"
@@ -50,6 +55,8 @@
         android:ems="10"
         android:hint="Enter Password"
         android:inputType="textPassword"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/btn_login_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -60,7 +67,9 @@
         android:id="@+id/btn_login_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
         android:text="Log In"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_login_register"
         app:layout_constraintHorizontal_bias="0.5"
@@ -71,7 +80,9 @@
         android:id="@+id/btn_login_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
         android:text="Register"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -89,5 +100,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login_login" />
+
+    <TextView
+        android:id="@+id/txt_Login_Recover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Need Help With Login ?"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_logIn_error" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

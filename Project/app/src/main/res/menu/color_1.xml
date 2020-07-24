@@ -4,5 +4,6 @@
         <item android:id="@+id/checkred" android:title="RED"></item>
         <item android:id="@+id/checkblue" android:title="BLUE"></item>
         <item android:id="@+id/checkgreen" android:title="Green"></item>
+        <item android:id="@+id/checkvip1" android:title="VIP" android:enabled="false"></item>
     </group>
 </menu>

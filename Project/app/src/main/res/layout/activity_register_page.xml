@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background1"
     tools:context=".Activities.RegisterPage">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="User Name"
+        android:textColor="@color/colorAccent"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/edit_register_userName"
         app:layout_constraintEnd_toStartOf="@+id/edit_register_userName"
@@ -22,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
+        android:textColor="@color/colorAccent"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/edit_regis_pass"
         app:layout_constraintEnd_toStartOf="@+id/edit_regis_pass"
@@ -32,7 +35,9 @@
         android:id="@+id/btn_reg_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
         android:text="Register"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -46,6 +51,8 @@
         android:ems="10"
         android:hint="Enter User Name"
         android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/edit_regis_pass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -59,6 +66,8 @@
         android:ems="10"
         android:hint="Enter Password Here"
         android:inputType="textPassword"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/btn_reg_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -77,5 +86,28 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_reg_register" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Email "
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/txt_register_pass"
+        app:layout_constraintStart_toStartOf="@+id/txt_reg_userName"
+        app:layout_constraintTop_toBottomOf="@+id/txt_reg_userName" />
+
+    <EditText
+        android:id="@+id/edit_reg_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter Your Email Address"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/edit_regis_pass"
+        app:layout_constraintStart_toStartOf="@+id/edit_register_userName"
+        app:layout_constraintTop_toBottomOf="@+id/edit_register_userName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

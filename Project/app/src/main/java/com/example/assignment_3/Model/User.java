@@ -21,21 +21,42 @@ public class User extends Application implements Parcelable {
     @ColumnInfo(name = "password")
     private String password;
 
-    public User(int id, String userName, String password) {
+    @ColumnInfo(name = "Email")
+    private String email;
+
+    @ColumnInfo(name = "membership")
+    private int membership;
+    // 1 ====>normal user
+    // 2 ====>VIP
+
+    public User(int id, String userName, String password,String email,int membership) {
         this.id = id;
         this.userName = userName;
         this.password = password;
+        this.email = email;
+        this.membership = membership;
     }
 
     @Ignore
-    public User(String userName, String password) {
+    public User(String userName, String password,int membership) {
         this.userName = userName;
         this.password = password;
+        this.email = "kobezhangcc@gmail.com";
+        this.membership = membership;
+    }
+    @Ignore
+    public User(String userName, String password, String email) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.membership = 1;
     }
 
     protected User(Parcel in) {
         userName = in.readString();
         password = in.readString();
+        email = in.readString();
+        membership = in.readInt();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -74,6 +95,21 @@ public class User extends Application implements Parcelable {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getMembership() {
+        return membership;
+    }
+
+    public void setMembership(int membership) {
+        this.membership = membership;
+    }
 
     @Override
     public int describeContents() {
@@ -84,5 +120,7 @@ public class User extends Application implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(userName);
         dest.writeString(password);
+        dest.writeString(email);
+        dest.writeInt(membership);
     }
 }

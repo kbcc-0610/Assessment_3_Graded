@@ -1,10 +1,13 @@
 package com.example.assignment_3.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -51,6 +54,9 @@ public class GamePage extends AppCompatActivity implements EnterUserName.UserNam
     private int color2 = R.color.colorPink;
     private RecyclerView recyclerViewGame;
     private RecyclerViewAdapter adapter;
+    private String logineduserName = Login_page.getUsername();
+    private boolean logined = Login_page.getLogin();
+    private AlertDialog.Builder confirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,17 +67,17 @@ public class GamePage extends AppCompatActivity implements EnterUserName.UserNam
         btnRestart = findViewById(R.id.btn_restart);
         btnRestart.setVisibility(View.GONE);
         SharedPreferences result = getSharedPreferences("SavedSizedata", Context.MODE_PRIVATE);
-        SharedPreferences color1Result = getSharedPreferences("Color1data",Context.MODE_PRIVATE);
-        SharedPreferences color2Result = getSharedPreferences("Color2data",Context.MODE_PRIVATE);
+        SharedPreferences color1Result = getSharedPreferences("Color1data", Context.MODE_PRIVATE);
+        SharedPreferences color2Result = getSharedPreferences("Color2data", Context.MODE_PRIVATE);
         String theresult = result.getString("value", "4");
-        String resultForColor1 = color1Result.getString("value",String.valueOf(R.color.colorBlue));
-        String resultForColor2 = color2Result.getString("value",String.valueOf(R.color.colorRed));
+        String resultForColor1 = color1Result.getString("value", String.valueOf(R.color.colorBlue));
+        String resultForColor2 = color2Result.getString("value", String.valueOf(R.color.colorRed));
         color1 = Integer.parseInt(resultForColor1);
         color2 = Integer.parseInt(resultForColor2);
         columncount = Integer.parseInt(theresult);
         txtResult = findViewById(R.id.txt_Result);
         txtResult.setVisibility(View.GONE);
-
+        confirm = new AlertDialog.Builder(this);
         ArrayList<Record> recordArrayList = (ArrayList<Record>) RecordDB.getInstance(this).recordDao().getAllRecords();
         Collections.sort(recordArrayList);
         recyclerViewGame = findViewById(R.id.recycler_game);
@@ -92,17 +98,20 @@ public class GamePage extends AppCompatActivity implements EnterUserName.UserNam
         btnRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setVisibility(View.GONE);
-                chronometer.setBase(SystemClock.elapsedRealtime());
-                pauseOffset = 0;
-                gridArr = new Box[columncount * columncount];
-                populateGrid();
-                gridView.setEnabled(true);
-                chronometer.start();
-                num = 1;
-
+                startNewGame();
             }
         });
+    }
+
+    private void startNewGame() {
+        txtResult.setVisibility(View.GONE);
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        pauseOffset = 0;
+        gridArr = new Box[columncount * columncount];
+        populateGrid();
+        gridView.setEnabled(true);
+        chronometer.start();
+        num = 1;
     }
 
     private void startGame() {
@@ -148,7 +157,7 @@ public class GamePage extends AppCompatActivity implements EnterUserName.UserNam
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ImageView iv = view.findViewById(R.id.img_gridItem);
-                if(iv.getTag() =="Grey"){
+                if (iv.getTag() == "Grey") {
                     view.setClickable(false);
                     view.setEnabled(false);
                     view.setFocusable(false);
@@ -156,7 +165,7 @@ public class GamePage extends AppCompatActivity implements EnterUserName.UserNam
                     int x = position / columncount;
                     int y = position % columncount;
                     //number to get the present color
-                    int c = gridArr[position].changeColor(num,color1,color2);
+                    int c = gridArr[position].changeColor(num, color1, color2);
                     int d;
                     //number to get the next color
                     if (c == color1) {
@@ -180,52 +189,60 @@ public class GamePage extends AppCompatActivity implements EnterUserName.UserNam
         win = true;
         gamingTime = timeused;
 
-            //check the horizontal
-            for (int i = 0; i < columncount * columncount - 2; i++) {
-                if (gridArr[i].getColorSource() == color1 && gridArr[i + 1].getColorSource() == color1 && gridArr[i + 2].getColorSource() == color1) {
-                    toastmsg = Toast.makeText(getApplicationContext(), "Player Lose in Hor" + " " + timeused + "s", Toast.LENGTH_SHORT);
-                    toastmsg.show();
-                    gameLose();
-                    win = false;
-                }
-
-                if (gridArr[i].getColorSource() == color2 && gridArr[i + 1].getColorSource() == color2 && gridArr[i + 2].getColorSource() ==color2) {
-                    nextColor = findViewById(R.id.img_nextColor);
-                    nextColor.setImageResource(R.color.colorAccent);
-                    toastmsg = Toast.makeText(getApplicationContext(), "Player Lose in Hor" + " " + timeused + "s", Toast.LENGTH_SHORT);
-                    toastmsg.show();
-                    gameLose();
-                    win = false;
-                }
-            }
-            //check for the Vertical
-            for (int i = 0; i < columncount * columncount - columncount * 2; i++) {
-                if (gridArr[i].getColorSource() == color1 && gridArr[i + columncount].getColorSource() == color1 && gridArr[i + columncount*2].getColorSource() == color1) {
-                    Toast.makeText(getApplicationContext(), "Player Lose in Ver" + " " + timeused + "s", Toast.LENGTH_SHORT).show();
-                    gameLose();
-                    win = false;
-                }
-
-                if (gridArr[i].getColorSource() == color2 && gridArr[i + columncount].getColorSource() == color2 && gridArr[i + columncount*2].getColorSource() == color2) {
-                    Toast.makeText(getApplicationContext(), "Player Lose in Ver" + " " + timeused + "s", Toast.LENGTH_SHORT).show();
-                    gameLose();
-                    win = false;
-                }
+        //check the horizontal
+        for (int i = 0; i < columncount * columncount - 2; i++) {
+            if (gridArr[i].getColorSource() == color1 && gridArr[i + 1].getColorSource() == color1 && gridArr[i + 2].getColorSource() == color1) {
+                toastmsg = Toast.makeText(getApplicationContext(), "Player Lose in Hor" + " " + timeused + "s", Toast.LENGTH_SHORT);
+                toastmsg.show();
+                gameLose();
+                win = false;
             }
 
-            if (win &&num> columncount *columncount) {
-                txtResult.setText("Win");
-                txtResult.setTextColor(Color.GREEN);
-                txtResult.setVisibility(View.VISIBLE);
-                if (newRecord(gamingTime)) {
+            if (gridArr[i].getColorSource() == color2 && gridArr[i + 1].getColorSource() == color2 && gridArr[i + 2].getColorSource() == color2) {
+                nextColor = findViewById(R.id.img_nextColor);
+                nextColor.setImageResource(R.color.colorAccent);
+                toastmsg = Toast.makeText(getApplicationContext(), "Player Lose in Hor" + " " + timeused + "s", Toast.LENGTH_SHORT);
+                toastmsg.show();
+                gameLose();
+                win = false;
+            }
+        }
+        //check for the Vertical
+        for (int i = 0; i < columncount * columncount - columncount * 2; i++) {
+            if (gridArr[i].getColorSource() == color1 && gridArr[i + columncount].getColorSource() == color1 && gridArr[i + columncount * 2].getColorSource() == color1) {
+                Toast.makeText(getApplicationContext(), "Player Lose in Ver" + " " + timeused + "s", Toast.LENGTH_SHORT).show();
+                gameLose();
+                win = false;
+            }
+
+            if (gridArr[i].getColorSource() == color2 && gridArr[i + columncount].getColorSource() == color2 && gridArr[i + columncount * 2].getColorSource() == color2) {
+                Toast.makeText(getApplicationContext(), "Player Lose in Ver" + " " + timeused + "s", Toast.LENGTH_SHORT).show();
+                gameLose();
+                win = false;
+            }
+        }
+
+        if (win && num > columncount * columncount) {
+            txtResult.setText("Win");
+            txtResult.setTextColor(Color.GREEN);
+            txtResult.setVisibility(View.VISIBLE);
+            if (newRecord(gamingTime)) {
+                if (logined) {
+                    String theDate = getDateInformat();
+                    Record recordToAdd = new Record(logineduserName, gamingTime, theDate);
+                    insertNewRecord(recordToAdd);
+                    showDialog(logineduserName);
+                } else {
+                    // update if the user already login
                     EnterUserName userNamedialog = new EnterUserName();
                     userNamedialog.show(getSupportFragmentManager(), "Enter user Name");
                 }
-            }
 
+            }
+        }
     }
 
-    public void gameEnd() {
+    private void gameEnd() {
         if (num >= columncount * columncount) {
             gridView.setEnabled(false);
             gameProcessing = false;
@@ -235,7 +252,7 @@ public class GamePage extends AppCompatActivity implements EnterUserName.UserNam
         }
     }
 
-    public void gameLose(){
+    private void gameLose() {
         gridView.setEnabled(false);
         chronometer.stop();
         gameProcessing = false;
@@ -249,10 +266,40 @@ public class GamePage extends AppCompatActivity implements EnterUserName.UserNam
     @Override
     public void applyName(String name) {
         String username = name;
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        String theDate = dateFormat.format(date);
+        String theDate = getDateInformat();
         Record recordToAdd = new Record(username, gamingTime, theDate);
+        insertNewRecord(recordToAdd);
+        showDialog(username);
+    }
+
+    //check if the record can be a new top 10 highest record
+    private Boolean newRecord(long newRecord) {
+        Record lastRecord = RecordDB.getInstance(getApplicationContext()).recordDao().getLastRecordS();
+        if (lastRecord.getTime() > newRecord) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //get the size width and height
+    private int getSize(int x) {
+        int size = 0;
+        if (x == 4) {
+            size = 240;
+        }
+
+        if (x == 5) {
+            size = 190;
+        }
+
+        if (x == 6) {
+            size = 160;
+        }
+        return size;
+    }
+
+    private void insertNewRecord(Record recordToAdd) {
         ArrayList<Record> oldList = new ArrayList<>();
         oldList = (ArrayList<Record>) RecordDB.getInstance(getApplicationContext()).recordDao().getAllRecords();
         if (oldList.size() >= 10) {
@@ -270,32 +317,31 @@ public class GamePage extends AppCompatActivity implements EnterUserName.UserNam
         }
     }
 
-    //check if the record can be a new top 10 highest record
-    public Boolean newRecord(long newRecord) {
-        Record lastRecord = RecordDB.getInstance(getApplicationContext()).recordDao().getLastRecordS();
-        if (lastRecord.getTime() > newRecord) {
-            return true;
-        } else {
-            return false;
-        }
+    private String getDateInformat() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String theDate = dateFormat.format(date);
+        return theDate;
     }
 
-    //get the size width and height
-    public int getSize(int x) {
-        int size = 0;
-        if (x == 4) {
-            size = 240;
-        }
-
-        if (x == 5) {
-            size = 190;
-        }
-
-        if (x == 6) {
-            size = 160;
-        }
-        return size;
+    private void showDialog(String name) {
+        confirm.setTitle("New Record Saved!");
+        confirm.setMessage("Congratulation " + name + " ! You have reach the top 10 highest scores! Your record has been saved successfully!!");
+        confirm.setNegativeButton("Restart", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startNewGame();
+            }
+        });
+        confirm.setPositiveButton("Check High Score", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(GamePage.this, HighScorePage.class);
+                startActivity(intent);
+            }
+        });
+        confirm.create();
+        confirm.show();
     }
-
 }
 

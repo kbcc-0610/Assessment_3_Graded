@@ -24,11 +24,11 @@ public interface RemoteGameDB {
     @GET("Records/{id}")
     Call<Record> GetContactByID(@Path("id") int id);
 
-    @PUT("Contacts/{id}")
+    @PUT("Records/{id}")
     Call<Void> UpdateRecordByID(@Path("id") int id, @Body Record record);
 
-    @DELETE("Contacts/{id}")
-    Call<Record> DeleteContactByID(@Path("id") int id);
+    @DELETE("Records/{id}")
+    Call<Record> DeleteRecordByID(@Path("id") int id);
 
     //GUI for Setting table
     @POST("Settings")

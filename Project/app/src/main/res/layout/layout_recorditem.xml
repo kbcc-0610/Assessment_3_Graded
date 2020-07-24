@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:text="00:00:00"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txt_num"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:text="11-11-2011"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txt_name"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="1"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:text="Kobe"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txt_time"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +53,9 @@
         android:id="@+id/btn_high_share"
         android:layout_width="88dp"
         android:layout_height="35dp"
+        android:background="@color/design_default_color_primary"
         android:text="Share"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
