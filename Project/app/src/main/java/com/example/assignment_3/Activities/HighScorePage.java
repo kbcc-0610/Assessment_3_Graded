@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.assignment_3.Adapter.RecyclerViewAdapterWithButton;
 import com.example.assignment_3.Database.RecordDB;
 import com.example.assignment_3.Model.Record;
 import com.example.assignment_3.R;

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.assignment_3.Database.UserDB;
 import com.example.assignment_3.Model.User;
@@ -28,7 +29,6 @@ public class RegisterPage extends AppCompatActivity {
     private String userName;
     private String password;
     private String email;
-    private TextView txtError;
     private AlertDialog.Builder confirm;
 
     @Override
@@ -38,12 +38,10 @@ public class RegisterPage extends AppCompatActivity {
         getSupportActionBar().setTitle("Register");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         registerNewUser();
-        txtError.setVisibility(View.GONE);
         confirm = new AlertDialog.Builder(this);
     }
 
     private void registerNewUser() {
-        txtError = findViewById(R.id.txt_reg_error);
         editUserName = findViewById(R.id.edit_register_userName);
         editPass = findViewById(R.id.edit_regis_pass);
         btnRegister = findViewById(R.id.btn_reg_register);
@@ -53,27 +51,21 @@ public class RegisterPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 found = false;
-                txtError.setVisibility(View.GONE);
                 userName = editUserName.getText().toString();
                 password = editPass.getText().toString();
                 email = editEmail.getText().toString();
                 if (userName.isEmpty() || password.isEmpty() || email.isEmpty()) {
                     //when user did not enter anything
-                    txtError.setText("Please Enter User Name password and email address");
-                    txtError.setVisibility(View.VISIBLE);
-                    editEmail.setError("Field can't be empty");
+                    Toast.makeText(RegisterPage.this, "Please Enter all the fields", Toast.LENGTH_SHORT).show();
                 } else {
                     if (checkUserName(userName)) {
                         //when there is duplicate user name exist ask user to enter a new one
-                        txtError.setText("User Name Already Exists, Try Another One");
-                        txtError.setVisibility(View.VISIBLE);
+                        Toast.makeText(RegisterPage.this, "User name already been used, Try another one", Toast.LENGTH_SHORT).show();
                     } else if (checkEmailAddress(email)) {
                         //when there is a duplicate email address exist ask user to enter a new email address
-                        txtError.setText("Email is Already Exists, Try a new One");
-                        txtError.setVisibility(View.VISIBLE);
+                        Toast.makeText(RegisterPage.this, "Email is already been used, try a new one", Toast.LENGTH_SHORT).show();
                     } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                        txtError.setText("Invalid Email Address");
-                        txtError.setVisibility(View.VISIBLE);
+                        Toast.makeText(RegisterPage.this, "Invalid Email Address", Toast.LENGTH_SHORT).show();
                     } else {
                         // when there is no same username and email address exists in the database
                         User userToAdd = new User(userName, password, email);

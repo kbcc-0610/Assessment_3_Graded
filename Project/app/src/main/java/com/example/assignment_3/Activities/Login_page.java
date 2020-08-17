@@ -29,7 +29,6 @@ public class Login_page extends AppCompatActivity {
     private static Boolean logined = false;
     private static String loginUserName;
     private static User LoginedUser;
-    private TextView txtError;
     private Boolean found = false;
     private AlertDialog.Builder confirm;
     private TextView txtRecover;
@@ -42,8 +41,6 @@ public class Login_page extends AppCompatActivity {
         getSupportActionBar().setTitle("Log in");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        txtError = findViewById(R.id.txt_logIn_error);
-        txtError.setVisibility(View.GONE);
         txtRecover = findViewById(R.id.txt_Login_Recover);
         txtRecover.setVisibility(View.GONE);
         UserDB.initData(getApplicationContext());
@@ -60,7 +57,6 @@ public class Login_page extends AppCompatActivity {
 
     private void Register() {
         btnregister = findViewById(R.id.btn_login_register);
-        txtError.setVisibility(View.GONE);
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,11 +79,8 @@ public class Login_page extends AppCompatActivity {
                 String username = editUserName.getText().toString();
                 String password = editPassword.getText().toString();
                 ArrayList<User> userArrayList = (ArrayList<User>) UserDB.getInstance(getApplicationContext()).userDao().getAllUsers();
-                txtError.setVisibility(View.VISIBLE);
                 if (username.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Please enter your user name and password first", Toast.LENGTH_SHORT);
-                    txtError.setText("Please enter your user name and password first");
-                    txtError.setTextColor(Color.RED);
+                    Toast.makeText(getApplicationContext(), "Please enter your user name and password first", Toast.LENGTH_SHORT).show();
                     tryTime++;
                 } else {
                     for (User u : userArrayList) {
@@ -98,21 +91,17 @@ public class Login_page extends AppCompatActivity {
                                 logined = true;
                                 loginUserName = username;
                                 LoginedUser = u;
-                                Toast.makeText(getApplicationContext(), "Log in successfully " + loginUserName, Toast.LENGTH_SHORT);
-                                txtError.setText("Log IN Successfully");
-                                txtError.setTextColor(Color.GREEN);
+                                Toast.makeText(getApplicationContext(), "Log in successfully " + loginUserName, Toast.LENGTH_SHORT).show();
+
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "Password is not Correct", Toast.LENGTH_SHORT);
-                                txtError.setText("Password is not Correct");
-                                txtError.setTextColor(Color.RED);
+                                Toast.makeText(getApplicationContext(), "Password is not Correct", Toast.LENGTH_SHORT).show();
                                 tryTime++;
                             }
                         }
                     }
                     if (!found) {
-                        txtError.setText("The user name does not exist");
-                        txtError.setTextColor(Color.RED);
+                        Toast.makeText(Login_page.this, "User Name Does Not Exist", Toast.LENGTH_SHORT).show();
                         tryTime++;
                     }
                 }

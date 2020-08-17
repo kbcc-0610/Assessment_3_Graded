@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,113 +7,96 @@
     android:background="@drawable/background1"
     tools:context=".Activities.MainActivity">
 
-    <Button
-        android:id="@+id/btn_home_backupSet"
-        android:layout_width="wrap_content"
-        android:layout_height="67dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/design_default_color_primary"
-        android:text="Back Up Setting"
-        android:textColor="@color/colorAccent"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/btn_home_backupRec"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_wel_highScore" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/btn_home_backupRec"
-        android:layout_width="wrap_content"
-        android:layout_height="67dp"
-        android:background="@color/design_default_color_primary"
-        android:text="Back Up High Score"
-        android:textColor="@color/colorAccent"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_home_backupSet"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_home_backupSet" />
+        <TextView
+            android:id="@+id/txt_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Log In"
+            android:textColor="@color/design_default_color_secondary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_main_vip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Get VIP"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_main_signoff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Sign Off"
+            android:textAllCaps="true"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="24sp"
+            android:textStyle="bold|italic" />
 
     <Button
         android:id="@+id/btn_wel_start"
-        android:layout_width="248dp"
-        android:layout_height="67dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/design_default_color_primary"
         android:text="Start Game"
         android:textColor="@color/colorAccent"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_wel_setting"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="10dp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_wel_setting"
-        android:layout_width="248dp"
-        android:layout_height="67dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/design_default_color_primary"
         android:text="Setting"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_wel_highScore"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_wel_start" />
+        android:layout_marginTop="10dp" />
 
     <Button
         android:id="@+id/btn_wel_highScore"
-        android:layout_width="248dp"
-        android:layout_height="67dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/design_default_color_primary"
         android:text="High Scores"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_wel_setting" />
+        android:layout_marginTop="10dp" />
 
-    <TextView
-        android:id="@+id/txt_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:text="Log In"
-        android:textColor="@color/design_default_color_secondary"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btn_home_backupSet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/design_default_color_primary"
+            android:text="Back Up Setting"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txt_main_vip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:text="Get VIP"
-        android:textColor="@color/colorAccent"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_login" />
+        <Button
+            android:id="@+id/btn_home_backupRec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_primary"
+            android:text="Back Up High Score"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp" />
 
-    <TextView
-        android:id="@+id/txt_main_signoff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="Sign Off"
-        android:textAllCaps="true"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

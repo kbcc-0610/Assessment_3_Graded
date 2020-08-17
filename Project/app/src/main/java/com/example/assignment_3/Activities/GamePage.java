@@ -22,6 +22,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.assignment_3.Adapter.ImageAdapter;
+import com.example.assignment_3.Adapter.RecyclerViewAdapter;
 import com.example.assignment_3.Database.RecordDB;
 import com.example.assignment_3.Model.Box;
 import com.example.assignment_3.Model.Record;
